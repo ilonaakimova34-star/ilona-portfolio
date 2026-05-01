@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="section">
+    <a href="{% url 'project_list' %}" class="back-link">← Back to Work</a>
+    
+    {% if project.image %}
+<a href="{{ project.image.url }}" target="_blank">
+    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="detail-image">
+</a>
+{% endif %}
+
+    <p class="card-tags">{{ project.tags }}</p>
+    <h1>{{ project.title }}</h1>
+    <p class="detail-description">{{ project.description }}</p>
+
+    <div class="detail-links">
+        {% if project.live_url %}
+        <a href="{{ project.live_url }}" target="_blank" class="btn">View Live</a>
+        {% endif %}
+        {% if project.github_url %}
+        <a href="{{ project.github_url }}" target="_blank" class="btn btn-outline">GitHub</a>
+        {% endif %}
+    </div>
+{% if project.video_url %}
+    <div class="video-section">
+        <h2>Video</h2>
+        <div class="video-wrapper">
+            <iframe 
+                src="{{ project.video_url }}" 
+                frameborder="0" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+    {% endif %}
+    
+    {% if project.gallery.all %}
+    <div class="gallery-section">
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+            {% for item in project.gallery.all %}
+            <div class="gallery-item">
+                <a href="{{ item.image.url }}" target="_blank">
+                    <img src="{{ item.image.url }}" alt="{{ item.caption }}">
+                </a>
+                {% if item.caption %}
+                <p class="gallery-caption">{{ item.caption }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+</section>
+
+{% endblock %}

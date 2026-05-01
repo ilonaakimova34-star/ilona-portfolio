@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="hero">
+    <p class="hero-label">Marketing · Strategy · Creative</p>
+    <h1>Ilona Akimova</h1>
+    <p class="hero-sub">Building brands that feel like something. Currently obsessed with consumer luxury.</p>
+    <div style="display: flex; gap: 12px; justify-content: center; margin-top: 20px;">
+        <a href="{% url 'project_list' %}" class="btn">View Work</a>
+        <a href="{% static 'resume.png' %}" target="_blank" class="btn btn-outline">Resume</a>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Featured Projects</h2>
+    <div class="project-grid">
+        {% for project in projects %}
+        <a href="{% url 'project_detail' project.pk %}" class="project-card">
+            {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+            {% endif %}
+            <div class="card-body">
+                <p class="card-tags">{{ project.tags }}</p>
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.description|truncatewords:20 }}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="section">
+    <h2>Skills</h2>
+    
+    {% regroup skills by category as skill_categories %}
+    {% for category in skill_categories %}
+    <div class="skill-category">
+        <h3 class="skill-category-title">{{ category.grouper }}</h3>
+        <div class="skills-grid">
+            {% for skill in category.list %}
+            <span class="skill-tag">{{ skill.name }}</span>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+{% if certifications %}
+<section class="section">
+    <h2>Certifications</h2>
+    <div class="cert-grid">
+        {% for cert in certifications %}
+        <div class="cert-card">
+            {% if cert.image %}
+            <img src="{{ cert.image.url }}" alt="{{ cert.name }}">
+            {% endif %}
+            <div class="cert-body">
+                <h3>{{ cert.name }}</h3>
+                <p>{{ cert.issuer }}</p>
+                {% if cert.url %}
+                <a href="{{ cert.url }}" target="_blank" class="cert-link">View Certificate →</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<section class="section">
+    <h2>Experience</h2>
+    <div class="experience-list">
+        {% for exp in experience %}
+        <div class="experience-item">
+            <div class="experience-header">
+                <div>
+                    <h3>{{ exp.role }}</h3>
+                    <p class="experience-company">{{ exp.company }}</p>
+                </div>
+                <div class="experience-dates">
+                    {{ exp.start_date|date:"M Y" }} — 
+                    {% if exp.end_date %}
+                        {{ exp.end_date|date:"M Y" }}
+                    {% else %}
+                        Present
+                    {% endif %}
+                </div>
+            </div>
+            <p class="experience-description">{{ exp.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="section dream-section">
+    <div class="dream-container">
+        <div class="dream-text">
+            <p class="hero-label">Dream Brand</p>
+            <h2>Victoria's Secret</h2>
+            <p class="dream-bio">
+                Victoria's Secret has always represented more than lingerie — it's a cultural 
+                moment, a feeling, a statement. I'm drawn to their marketing because it lives 
+                at the intersection of glamour, confidence, and storytelling. My goal is to 
+                bring my technical skills in AI, data, and digital marketing together with my 
+                passion for brand narrative to help Victoria's Secret connect with the next 
+                generation of customers in an authentic and powerful way.
+            </p>
+            <a href="mailto:ilonaakimoa34@gmail.com" class="btn">Let's Talk</a>
+        </div>
+        <div class="dream-logo">
+            🌸
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="section">
+    <div class="contact-container">
+        <div class="contact-text">
+            <p class="hero-label">Get In Touch</p>
+            <h1>Let's Work Together</h1>
+            <p class="about-bio">
+                Whether you have a project in mind, a question, or just want to connect — 
+                I'd love to hear from you. I'm currently open to full-time marketing 
+                opportunities and collaborations.
+            </p>
+
+            <div class="contact-links">
+                <a href="mailto:ilonaakimoa34@gmail.com" class="contact-item">
+                    <span class="contact-label">Email</span>
+                    <span class="contact-value">ilonaakimoa34@gmail.com</span>
+                </a>
+                <a href="https://www.linkedin.com/in/ilona-akimova/" target="_blank" class="contact-item">
+                    <span class="contact-label">LinkedIn</span>
+                    <span class="contact-value">ilona-akimova</span>
+                </a>
+                <a href="https://github.com/ilonaakimova34-star" target="_blank" class="contact-item">
+                    <span class="contact-label">GitHub</span>
+                    <span class="contact-value">ilonaakimova34-star</span>
+                </a>
+            </div>
+
+            <div class="about-links" style="margin-top: 40px;">
+                <a href="mailto:ilonaakimoa34@gmail.com" class="btn">Email Me</a>
+                <a href="https://www.linkedin.com/in/ilona-akimova/" target="_blank" class="btn btn-outline">LinkedIn</a>
+                <a href="{% static 'resume.png' %}" target="_blank" class="btn btn-outline">Resume</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

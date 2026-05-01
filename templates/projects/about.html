@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="section">
+    <div class="about-container">
+        <div class="about-image">
+            <img src="{% static 'profile.jpg' %}" alt="Ilona Akimova">
+        </div>
+        <div class="about-text">
+            <p class="hero-label">About Me</p>
+            <h1>Ilona Akimova</h1>
+            <p class="about-bio">
+                Born in Siberia, Russia, and raised in Juneau, Alaska, I brought a global perspective 
+                to Gonzaga University where I'm graduating in May 2026 with degrees in Marketing, 
+                Digital Marketing, and Management Information Systems. I'm passionate about marketing 
+                because it lets me build real stories for brands — adding those details that make a 
+                campaign feel genuine and emotionally resonant to the audience. When I'm not crafting 
+                campaigns, you'll find me on the basketball court, where 10 years of competitive play 
+                taught me that strategy, teamwork, and persistence win every time — on and off the court.
+            </p>
+            <div class="about-links">
+                <a href="mailto:ilonaakimoa34@gmail.com" class="btn">Email Me</a>
+                <a href="https://www.linkedin.com/in/ilona-akimova/" target="_blank" class="btn btn-outline">LinkedIn</a>
+                <a href="{% static 'resume.png' %}" target="_blank" class="btn btn-outline">Resume</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
